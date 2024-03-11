@@ -1,0 +1,4 @@
+prettytable
+xlsxwriter
+DrissionPage
+requests
