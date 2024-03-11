@@ -43,6 +43,9 @@ for plugin in plugins:
     type_choices += plugin.info()['type']
     desc_choices += plugin.info()['desc']
     name_choices.append(plugin.info()['name'])
+    # print(plugin.info()['name'],plugin.info()['type'],plugin.info()['desc'])
+
+
 
 # 定义命令行参数
 parser = argparse.ArgumentParser(description='批量查询')

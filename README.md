@@ -39,3 +39,23 @@ python InfoSearch.py -t ip -i 110.75.129.5
 ```
 python InfoSearch.py -n ip138 -i 110.75.129.5
 ```
+
+## 当前支持
+```
+oioweb ['ipv4', 'ipv6'] ['归属地']
+oioweb ['domain'] ['ICP备案']
+webscan ['ipv4'] ['IP反查域名']
+fofa ['domain'] ['资产测绘']
+fofa ['ipv4'] ['IP反查域名']
+fofa ['ipv4'] ['资产测绘']
+chinaz ['url', 'domain', 'icp', 'company_name'] ['ICP备案']
+chinaz ['ipv4', 'domain'] ['归属地']
+rapiddns ['ipv4'] ['IP反查域名']
+dnslytics ['ipv4'] ['IP反查域名']
+ip138 ['ipv4'] ['IP反查域名']
+chinaz ['ipv4'] ['IP反查域名']
+aizhan ['domain'] ['权重']
+beianx ['domain', 'icp', 'company_name'] ['ICP备案']
+dnsgrep ['ipv4'] ['IP反查域名']
+yougetsignal ['ipv4'] ['IP反查域名']
+```
