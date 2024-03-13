@@ -4,7 +4,7 @@ import time
 
 def info():
     _info = {
-        'name': 'chinaz-1',
+        'name': 'chinaz-2',
         'type': ['ipv4', 'domain'],
         'desc': ['归属地']
     }
