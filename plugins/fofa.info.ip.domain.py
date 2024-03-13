@@ -6,7 +6,7 @@ import base64
 
 def info():
     _info = {
-        'name': 'fofa',
+        'name': 'fofa-2',
         'type': ['ipv4'],
         'desc': ['IP反查域名']
     }

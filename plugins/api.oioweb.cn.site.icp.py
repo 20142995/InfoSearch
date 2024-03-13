@@ -3,7 +3,7 @@ import requests
 
 def info():
     _info = {
-        'name': 'oioweb',
+        'name': 'oioweb-2',
         'type': ['domain',],
         'desc': ['ICP备案']
     }

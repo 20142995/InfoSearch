@@ -3,7 +3,7 @@ import requests
 
 def info():
     _info = {
-        'name': 'oioweb',
+        'name': 'oioweb-1',
         'type': ['ipv4', 'ipv6'],
         'desc': ['归属地']
     }

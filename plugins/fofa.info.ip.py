@@ -6,7 +6,7 @@ import base64
 
 def info():
     _info = {
-        'name': 'fofa',
+        'name': 'fofa-3',
         'type': ['ipv4'],
         'desc': ['资产测绘']
     }

@@ -4,7 +4,7 @@ import time
 
 def info():
     _info = {
-        'name': 'chinaz',
+        'name': 'chinaz-1',
         'type': ['url', 'domain', 'icp', 'company_name'],
         'desc': ['ICP备案']
     }
