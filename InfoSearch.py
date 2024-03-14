@@ -43,23 +43,23 @@ for plugin in plugins:
     type_choices += plugin.info()['type']
     desc_choices += plugin.info()['desc']
     name_choices.append(plugin.info()['name'])
-    # print(plugin.info()['name'],plugin.info()['type'],plugin.info()['desc'])
+    # print(f"| {plugin.info()['name']} | {plugin.info()['type']} | {plugin.info()['desc']} |")
 
 
 
 # 定义命令行参数
 parser = argparse.ArgumentParser(description='批量查询')
-parser.add_argument('-i', dest='target', help='目标')
-parser.add_argument('-t', dest='type', choices=set(type_choices), help='过滤 类型')
-parser.add_argument('-d', dest='desc', choices=set(desc_choices), help='过滤 功能')
-parser.add_argument('-n', dest='name', choices=set(name_choices), help='过滤 名称')
-parser.add_argument('-o', dest='outfile', help='保存结果eg: “results.xlsx”')
+parser.add_argument('-i', dest='target', help='目标（必须）')
+parser.add_argument('-t', dest='type', choices=set(type_choices), help='过滤 类型（必须）')
+parser.add_argument('-d', dest='desc', choices=set(desc_choices), help='过滤 功能（可选）')
+parser.add_argument('-n', dest='name', choices=set(name_choices), help='过滤 插件名称（可选）')
+parser.add_argument('-o', dest='outfile', help='保存结果eg: “results.xlsx” （可选）')
 
 # 解析命令行参数
 args = parser.parse_args()
 # args.target = 'qq.com'
 # args.type = 'domain'
-if not args.target:
+if not args.target or not args.type:
     parser.print_help()
 else:
     targets = []
