@@ -26,18 +26,18 @@ options:
 
 ### IP反查域名 (根据功能过滤)
 ```
-python InfoSearch.py -d IP反查域名 -i 110.75.129.5
+python InfoSearch.py -t ipv4 -i 110.75.129.5 -d IP反查域名
 ```
 
 ### 查IP (根据输入类型过滤)
 ```
-python InfoSearch.py -t ip -i 110.75.129.5
+python InfoSearch.py -t ipv4 -i 110.75.129.5
 ```
 
 
 ### ip138 (根据插件名称过滤)
 ```
-python InfoSearch.py -n ip138 -i 110.75.129.5
+python InfoSearch.py -t ipv4 -i 110.75.129.5 -n ip138
 ```
 
 ## 当前支持
