@@ -20,7 +20,7 @@ def execute(target):
     # page = ChromiumPage(co)
     page = ChromiumPage()
     page.get(f'https://www.dnsgrep.cn/ip/{target}')
-    time.sleep(2)
+    time.sleep(5)
     trs = page.eles('xpath://table[.//text()="域名"]/tbody/tr')
     result = []
     title = trs[0].eles('xpath:th/text()')

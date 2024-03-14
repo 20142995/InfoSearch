@@ -31,7 +31,7 @@ def execute(target):
         row.append(li.ele('xpath:div[1]/text()'))
         row.append(li.ele('xpath:div[2]/a/text()'))
         row.append(li.ele('xpath:div[3]/a/text()'))
-        row.append(li.ele('xpath:div[4]/a/img/@src')[50:-4])
+        row.append(li.ele('xpath:div[4]/a/img/@src')[50:-4] if li.ele('xpath:div[4]/a/img/@src') else '')
         row.append(li.ele('xpath:div[5]/a/text()'))
         result.append(dict(zip(title, row)))
     return result

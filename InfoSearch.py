@@ -96,6 +96,7 @@ else:
                     _.update(item)
                     result.append(_)
             except Exception as e:
+                traceback.print_exc()
                 print(f'{name} {desc} {target} {e}')
         if result:
             results.setdefault(name, [])

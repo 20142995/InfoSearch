@@ -14,9 +14,11 @@ def execute(target):
     api_url = f'https://api.webscan.cc/?action=query&ip={target}'
     r = requests.get(api_url)
     rj = r.json()
+    if not rj:
+        rj = []
     return rj
 
 
 if __name__ == '__main__':
-    target = '8.8.8.8'
+    target = '8.8.8.81'
     print(execute(target))
