@@ -11,14 +11,12 @@ def info():
     return _info
 
 
-def execute(target):
-    result = []
-    # co = ChromiumOptions()
-    # co.incognito()  # 匿名模式
-    # co.headless()  # 无头模式
-    # co.set_argument('--no-sandbox')  # 无沙盒模式
-    # page = ChromiumPage(co)
-    page = ChromiumPage()
+def execute(target,debug=False):
+    co = ChromiumOptions()
+    co.incognito()
+    if not debug:
+        co.headless()
+    page = ChromiumPage(co)
     page.get(f'https://www.beianx.cn/search/{target}')
     time.sleep(2)
     table = page.ele('xpath://table[.//text()="序号"]')

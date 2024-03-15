@@ -13,14 +13,12 @@ def info():
     return _info
 
 
-def execute(target):
-    result = []
-    # co = ChromiumOptions()
-    # co.incognito()  # 匿名模式
-    # co.headless()  # 无头模式
-    # co.set_argument('--no-sandbox')  # 无沙盒模式
-    # page = ChromiumPage(co)
-    page = ChromiumPage()
+def execute(target,debug=False):
+    co = ChromiumOptions()
+    co.incognito()
+    if not debug:
+        co.headless()
+    page = ChromiumPage(co)
     q = f'ip="{target}"  && is_domain=true'
     qbase64 = quote(base64.b64encode(q.encode('utf8')).decode())
 

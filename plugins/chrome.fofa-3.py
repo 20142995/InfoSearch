@@ -6,22 +6,20 @@ import base64
 
 def info():
     _info = {
-        'name': 'fofa-1',
-        'type': ['domain'],
+        'name': 'fofa-3',
+        'type': ['ipv4'],
         'desc': ['资产测绘']
     }
     return _info
 
 
-def execute(target):
-    result = []
-    # co = ChromiumOptions()
-    # co.incognito()  # 匿名模式
-    # co.headless()  # 无头模式
-    # co.set_argument('--no-sandbox')  # 无沙盒模式
-    # page = ChromiumPage(co)
-    page = ChromiumPage()
-    q = f'domain="{target}"'
+def execute(target,debug=False):
+    co = ChromiumOptions()
+    co.incognito()
+    if not debug:
+        co.headless()
+    page = ChromiumPage(co)
+    q = f'ip="{target}"'
     qbase64 = quote(base64.b64encode(q.encode('utf8')).decode())
 
     page.get(f'https://fofa.info/result?qbase64={qbase64}')

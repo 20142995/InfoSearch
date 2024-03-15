@@ -2,3 +2,4 @@ prettytable
 xlsxwriter
 DrissionPage
 requests
+python-whois

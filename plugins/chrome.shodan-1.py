@@ -12,14 +12,12 @@ def info():
     return _info
 
 
-def execute(target):
-    result = []
-    # co = ChromiumOptions()
-    # co.incognito()  # 匿名模式
-    # co.headless()  # 无头模式
-    # co.set_argument('--no-sandbox')  # 无沙盒模式
-    # page = ChromiumPage(co)
-    page = ChromiumPage()
+def execute(target,debug=False):
+    co = ChromiumOptions()
+    co.incognito()
+    if not debug:
+        co.headless()
+    page = ChromiumPage(co)
     shodan_username = os.getenv('shodan_username')
     shodan_password = os.getenv('shodan_password')
     if shodan_username and shodan_password:

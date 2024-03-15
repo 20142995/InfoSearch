@@ -11,13 +11,12 @@ def info():
     return _info
 
 
-def execute(target):
-    # co = ChromiumOptions()
-    # co.incognito()  # 匿名模式
-    # co.headless()  # 无头模式
-    # co.set_argument('--no-sandbox')  # 无沙盒模式
-    # page = ChromiumPage(co)
-    page = ChromiumPage()
+def execute(target,debug=False):
+    co = ChromiumOptions()
+    co.incognito()
+    if not debug:
+        co.headless()
+    page = ChromiumPage(co)
     page.get(f'https://www.aizhan.com/cha/{target}/')
     time.sleep(2)
     table = page.ele('xpath://table[.//text()="SEO信息"]')
@@ -31,4 +30,4 @@ def execute(target):
 
 if __name__ == '__main__':
     target = 'qq.com'
-    print(execute(target))
+    print(execute(target,debug=True))
