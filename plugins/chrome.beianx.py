@@ -13,7 +13,6 @@ def info():
 
 def execute(target,debug=False):
     co = ChromiumOptions()
-    co.incognito()
     if not debug:
         co.headless()
     page = ChromiumPage(co)
@@ -33,4 +32,4 @@ def execute(target,debug=False):
 
 if __name__ == '__main__':
     target = '北京百度网讯科技有限公司'
-    print(execute(target))
+    print(execute(target,debug=True))

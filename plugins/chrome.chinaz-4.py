@@ -13,10 +13,9 @@ def info():
 
 def execute(target,debug=False):
     co = ChromiumOptions()
-    co.incognito()
     if not debug:
         co.headless()
-    page = ChromiumPage(co)
+    page = ChromiumPage()
     page.get('https://whois.chinaz.com/')
     page.ele('@id=DomainName').input(target)
     page.ele('@value=查询').click()

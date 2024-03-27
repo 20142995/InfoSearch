@@ -13,7 +13,6 @@ def info():
 
 def execute(target,debug=False):
     co = ChromiumOptions()
-    co.incognito()
     if not debug:
         co.headless()
     page = ChromiumPage(co)

@@ -13,7 +13,6 @@ def info():
 
 def execute(target,debug=False):
     co = ChromiumOptions()
-    co.incognito()
     if not debug:
         co.headless()
     page = ChromiumPage(co)
@@ -42,4 +41,4 @@ def execute(target,debug=False):
 
 if __name__ == '__main__':
     target = 'https://icp.chinaz.com/'
-    print(execute(target))
+    print(execute(target,debug=True))

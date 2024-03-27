@@ -15,7 +15,6 @@ def info():
 
 def execute(target,debug=False):
     co = ChromiumOptions()
-    co.incognito()
     if not debug:
         co.headless()
     page = ChromiumPage(co)
@@ -28,6 +27,7 @@ def execute(target,debug=False):
     div = page.ele('xpath://table[.//text()="序号"]/parent::div')
     th = [i.texts() for i in div.eles('xpath:table/thead/tr/th')]
     title = [i[0] for i in th if len(i) == 1]
+    result = []
     for tr in div.eles('xpath:following-sibling::div/table/tbody/tr'):
         td = [i.texts() for i in tr.eles('xpath:td')]
         row = [i[0] for i in td if len(i) == 1]
@@ -37,4 +37,4 @@ def execute(target,debug=False):
 
 if __name__ == '__main__':
     target = '8.8.8.8'
-    print(execute(target))
+    print(execute(target,debug=True))
