@@ -2,11 +2,12 @@ from DrissionPage import ChromiumOptions, ChromiumPage
 import time
 
 
+
 def info():
     _info = {
         'name': 'aizhan',
         'type': ['domain'],
-        'desc': ['权重']
+        'desc': ['网站权重']
     }
     return _info
 

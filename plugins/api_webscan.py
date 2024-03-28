@@ -1,11 +1,12 @@
 import requests
 
+requests.packages.urllib3.disable_warnings()
 
 def info():
     _info = {
         'name': 'webscan',
         'type': ['ipv4',],
-        'desc': ['IP反查域名']
+        'desc': ['ip反查域名']
     }
     return _info
 
@@ -20,5 +21,5 @@ def execute(target):
 
 
 if __name__ == '__main__':
-    target = '8.8.8.81'
+    target = '8.8.8.8'
     print(execute(target))

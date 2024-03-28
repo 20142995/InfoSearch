@@ -1,5 +1,7 @@
 import requests
 
+requests.packages.urllib3.disable_warnings()
+
 
 def info():
     _info = {

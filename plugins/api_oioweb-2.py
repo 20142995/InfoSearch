@@ -1,11 +1,13 @@
 import requests
 
+requests.packages.urllib3.disable_warnings()
+
 
 def info():
     _info = {
         'name': 'oioweb-2',
         'type': ['domain',],
-        'desc': ['ICP备案']
+        'desc': ['icp备案']
     }
     return _info
 
