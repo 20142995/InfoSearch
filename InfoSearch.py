@@ -5,11 +5,12 @@ import traceback
 import sys
 import xlsxwriter
 from prettytable import PrettyTable
+
 sys.dont_write_bytecode = True
 
 
-def list2xlsx(excle_name, **tables):
-    workbook = xlsxwriter.Workbook(excle_name)
+def export_to_excel(excel_name, **tables):
+    workbook = xlsxwriter.Workbook(excel_name)
     for name, rows in tables.items():
         if not rows:
             continue
@@ -25,13 +26,13 @@ plugins = []
 for file in os.listdir(plugin_dir):
     if file == '__init__.py' or not file.endswith('.py'):
         continue
-    _file = os.path.join(plugin_dir, file)
+    plugin_file = os.path.join(plugin_dir, file)
     try:
-        _spec = importlib.util.spec_from_file_location(_file, _file)
-        _module = importlib.util.module_from_spec(_spec)
-        _spec.loader.exec_module(_module)
-        if hasattr(_module, 'execute') and hasattr(_module, 'info'):
-            plugins.append(_module)
+        plugin_spec = importlib.util.spec_from_file_location(plugin_file, plugin_file)
+        plugin_module = importlib.util.module_from_spec(plugin_spec)
+        plugin_spec.loader.exec_module(plugin_module)
+        if hasattr(plugin_module, 'execute') and hasattr(plugin_module, 'info'):
+            plugins.append(plugin_module)
     except Exception as e:
         traceback.print_exc()
 
@@ -43,8 +44,6 @@ for plugin in plugins:
     type_choices += plugin.info()['type']
     desc_choices += plugin.info()['desc']
     name_choices.append(plugin.info()['name'])
-    # print(f"| {plugin.info()['name']} | {plugin.info()['type']} | {plugin.info()['desc']} |")
-
 
 
 # 定义命令行参数
@@ -57,60 +56,54 @@ parser.add_argument('-o', dest='outfile', help='保存结果eg: “results.xlsx�
 
 # 解析命令行参数
 args = parser.parse_args()
-# args.target = 'qq.com'
-# args.type = 'domain'
+
 if not args.target or not args.type:
     parser.print_help()
 else:
     targets = []
     if os.path.isfile(args.target):
-        targets = [_.strip()
-                   for _ in open(args.target, 'r', encoding='utf8').readlines()]
+        targets = [_.strip() for _ in open(args.target, 'r', encoding='utf8').readlines()]
     else:
         targets = [args.target,]
 
     # 按设置过滤插件
     filtered_plugins = []
     if args.type:
-        filtered_plugins = [plugin for plugin in plugins if args.type in plugin.info()[
-            'type']]
+        filtered_plugins = [plugin for plugin in plugins if args.type in plugin.info()['type']]
     else:
         filtered_plugins = plugins
 
     if args.desc:
-        filtered_plugins = [
-            plugin for plugin in filtered_plugins if args.desc in plugin.info()['desc']]
+        filtered_plugins = [plugin for plugin in filtered_plugins if args.desc in plugin.info()['desc']]
 
     if args.name:
-        filtered_plugins = [plugin for plugin in filtered_plugins if args.name in plugin.info()[
-            'name'].lower()]
+        filtered_plugins = [plugin for plugin in filtered_plugins if args.name in plugin.info()['name'].lower()]
+
     results = {}
     for plugin in filtered_plugins:
-        name = plugin.info()['name']
-        desc = plugin.info()['desc']
+        plugin_name = plugin.info()['name']
+        plugin_desc = plugin.info()['desc']
         result = []
         for target in targets:
-            
             try:
                 items = plugin.execute(target)
-                print(f'[{name}] -< {target} -> {len(items)}')
+                print(f'[{plugin_name}] -< {target} -> {len(items)}')
                 for item in items:
-                    _ = {'*名称*': name, '*功能*': desc, '*目标*': target}
-                    _.update(item)
-                    result.append(_)
+                    row_data = {'*名称*': plugin_name, '*功能*': plugin_desc, '*目标*': target}
+                    row_data.update(item)
+                    result.append(row_data)
             except Exception as e:
-                # traceback.print_exc()
-                print(f'[{name}] -< {target} -> {e}')
+                print(f'[{plugin_name}] -< {target} -> {e}')
         if result:
-            results.setdefault(name, [])
+            results.setdefault(plugin_name, [])
             title = list(result[0].keys())
-            results[name].append(title)
+            results[plugin_name].append(title)
             table = PrettyTable(title)
             for item in result:
                 row = [str(item.get(t, '')) for t in title]
                 table.add_row(row)
-                results[name].append(row)
+                results[plugin_name].append(row)
             print(table)
 
     if args.outfile:
-        list2xlsx(args.outfile, **results)
+        export_to_excel(args.outfile, **results)
