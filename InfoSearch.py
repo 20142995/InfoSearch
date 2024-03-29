@@ -90,14 +90,17 @@ else:
         desc = plugin.info()['desc']
         result = []
         for target in targets:
+            
             try:
-                for item in plugin.execute(target):
+                items = plugin.execute(target)
+                print(f'[{name}] -< {target} -> {len(items)}')
+                for item in items:
                     _ = {'*名称*': name, '*功能*': desc, '*目标*': target}
                     _.update(item)
                     result.append(_)
             except Exception as e:
-                traceback.print_exc()
-                print(f'{name} {desc} {target} {e}')
+                # traceback.print_exc()
+                print(f'[{name}] -< {target} -> {e}')
         if result:
             results.setdefault(name, [])
             title = list(result[0].keys())

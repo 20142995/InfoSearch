@@ -9,7 +9,7 @@ jsb64 = '''dmFyIF8weG9kcj0nanNqaWFtaS5jb20udjYnLF8weG9kcl89WyfigK5fMHhvZHInXSxfM
 
 def info():
     _info = {
-        'name': 'chinaz-2',
+        'name': 'ip.tool.chinaz',
         'type': ['ipv4'],
         'desc': ['归属地']
     }

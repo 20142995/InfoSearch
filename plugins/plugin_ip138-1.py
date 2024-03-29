@@ -6,7 +6,7 @@ requests.packages.urllib3.disable_warnings()
 
 def info():
     _info = {
-        'name': 'ip138_1',
+        'name': 'ip138-1',
         'type': ['domain',],
         'desc': ['子域名采集']
     }

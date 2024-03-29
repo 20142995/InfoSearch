@@ -9,8 +9,8 @@ requests.packages.urllib3.disable_warnings()
 
 def info():
     _info = {
-        'name': 'fofa-3',
-        'type': ['domain'],
+        'name': 'fofa-1',
+        'type': ['ipv4'],
         'desc': ['资产测绘']
     }
     return _info
@@ -34,7 +34,7 @@ def execute(target):
         'Accept-Language': 'zh-CN,zh;q=0.9',
         'Connection': 'close',
     }
-    q = f'domain="{target}"'
+    q = f'ip="{target}"'
     qbase64 = quote(base64.b64encode(q.encode('utf8')).decode())
     params = {
         'qbase64': qbase64,
@@ -57,5 +57,5 @@ def execute(target):
 
 
 if __name__ == '__main__':
-    target = 'qq.com'
+    target = '183.230.9.30'
     print(execute(target))

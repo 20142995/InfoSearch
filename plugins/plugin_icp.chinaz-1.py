@@ -5,7 +5,7 @@ requests.packages.urllib3.disable_warnings()
 
 def info():
     _info = {
-        'name': 'icp.chinaz.com',
+        'name': 'icp.chinaz-1',
         'type': ['domain',],
         'desc': ['icp备案']
     }

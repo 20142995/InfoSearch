@@ -5,7 +5,7 @@ requests.packages.urllib3.disable_warnings()
 
 def info():
     _info = {
-        'name': 'threatbook-1',
+        'name': 'threatbook',
         'type': ['ipv4',],
         'desc': ['ip信誉',]
     }
@@ -16,6 +16,7 @@ def execute(target):
 
     url = "https://api.threatbook.cn/v3/scene/ip_reputation"
     apikey = os.getenv('threatbook_key', '')
+    result = []
     if apikey:
         query = {
             "apikey": apikey,
@@ -26,9 +27,10 @@ def execute(target):
         r = requests.get(url, params=query)
         rj = r.json()
         info = rj['data'][target]
+        result.append(info)
     else:
-        info = {'msg': '请设置环境变量threatbook_key'}
-    return [info,]
+        print('请设置环境变量threatbook_key')
+    return result
 
 
 if __name__ == '__main__':
