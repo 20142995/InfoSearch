@@ -13,10 +13,7 @@ def info():
 
 def execute(target):
     api_url = f'https://api.webscan.cc/?action=query&ip={target}'
-    r = requests.get(api_url)
-    rj = r.json()
-    if not rj:
-        rj = []
+    rj = requests.get(api_url).json()
     return rj
 
 

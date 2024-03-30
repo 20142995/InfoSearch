@@ -15,8 +15,7 @@ def info():
 def execute(target):
     api_url = f'https://api.oioweb.cn/api/ip/ipaddress?ip={target}'
     r = requests.get(api_url)
-    rj = r.json()
-    return [rj.get('result'), ]
+    return [r.json()['result'], ]
 
 
 if __name__ == '__main__':
