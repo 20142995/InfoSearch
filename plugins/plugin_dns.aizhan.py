@@ -1,24 +1,22 @@
 import requests
 from lxml import etree
-from urllib.parse import quote
-import base64
-import re
 
 requests.packages.urllib3.disable_warnings()
 
 
 def info():
     _info = {
-        'name': 'fofa-1',
+        'name': 'dns.aizhan',
         'type': ['ipv4'],
-        'desc': ['资产测绘']
+        'desc': ['ip反查域名']
     }
     return _info
 
 
 def execute(target):
+
     headers = {
-        'Host': 'fofa.info',
+        'Host': 'dns.aizhan.com',
         'Sec-Ch-Ua': '"Not A(Brand";v="24", "Chromium";v="110"',
         'Sec-Ch-Ua-Mobile': '?0',
         'Sec-Ch-Ua-Platform': '"Windows"',
@@ -29,32 +27,20 @@ def execute(target):
         'Sec-Fetch-Mode': 'navigate',
         'Sec-Fetch-User': '?1',
         'Sec-Fetch-Dest': 'document',
-        'Referer': 'https://fofa.info/',
+        'Referer': 'https://dns.aizhan.com/',
         # 'Accept-Encoding': 'gzip, deflate',
         'Accept-Language': 'zh-CN,zh;q=0.9',
         'Connection': 'close',
     }
-    q = f'ip="{target}"'
-    qbase64 = quote(base64.b64encode(q.encode('utf8')).decode())
-    params = {
-        'qbase64': qbase64,
-    }
 
-    r = requests.get('https://fofa.info/result', params=params,
-                     headers=headers, verify=False)
+    r = requests.get(f'https://dns.aizhan.com/{target}/', headers=headers, verify=False)
     html = etree.HTML(r.text)
-
-    divs = html.xpath(
-        '//div[@class="hsxa-clearfix hsxa-meta-data-list-revision-lv1"]')
+    title = html.xpath('//div[@class="dns-content"]/table/thead/tr/td/text()')
     result = []
-    title = ['host', 'port', 'protocol']
-    for div in divs:
-        row = [div.xpath('string(.//span[@class="hsxa-host"])').strip(), div.xpath(
-            'string(.//a[@class="hsxa-port"])').strip(), re.sub('\s+','',div.xpath('string(.//a[@class="hsxa-protocol"])'))]
+    for tr in html.xpath('//div[@class="dns-content"]/table/tbody/tr'):
+        row = [td.xpath('string(.)').strip() for td in tr.xpath('td')]
         result.append(dict(zip(title, row)))
-
-    return result
-
+    return  result
 
 if __name__ == '__main__':
     target = '8.8.8.8'
