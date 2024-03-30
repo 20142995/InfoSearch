@@ -20,11 +20,12 @@ def execute(target,debug=False):
     time.sleep(5)
     trs = page.eles('xpath://table[.//text()="域名"]/tbody/tr')
     result = []
+    if not trs:
+        return result
     title = trs[0].eles('xpath:th/text()')
     for tr in trs[1:]:
         row = [i.texts()[0].strip() for i in tr.eles('xpath:td')]
         result.append(dict(zip(title, row)))
-
     return result
 
 
