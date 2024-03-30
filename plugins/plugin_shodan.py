@@ -7,7 +7,7 @@ requests.packages.urllib3.disable_warnings()
 def info():
     _info = {
         'name': 'shodan',
-        'type': ['ip',],
+        'type': ['ipv4',],
         'desc': '资产测绘',
     }
     return _info
