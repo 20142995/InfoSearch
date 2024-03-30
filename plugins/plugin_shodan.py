@@ -8,7 +8,7 @@ def info():
     _info = {
         'name': 'shodan',
         'type': ['ip',],
-        'desc': ['资产测绘']
+        'desc': '资产测绘',
     }
     return _info
 

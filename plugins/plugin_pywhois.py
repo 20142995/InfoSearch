@@ -5,7 +5,7 @@ def info():
     _info = {
         'name': 'pywhois',
         'type': ['domain',],
-        'desc': ['whois']
+        'desc': 'whois',
     }
     return _info
 

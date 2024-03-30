@@ -7,7 +7,7 @@ def info():
     _info = {
         'name': 'oioweb-1',
         'type': ['ipv4', 'ipv6'],
-        'desc': ['归属地']
+        'desc': '归属地',
     }
     return _info
 

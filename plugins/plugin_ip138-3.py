@@ -7,8 +7,8 @@ requests.packages.urllib3.disable_warnings()
 def info():
     _info = {
         'name': 'ip138-2',
-        'type': ['ip',],
-        'desc': 'ip反查域名',
+        'type': ['domain',],
+        'desc': '域名历史解析',
     }
     return _info
 
@@ -35,16 +35,15 @@ def execute(target):
     r = requests.get(
         f'https://site.ip138.com/{target}/', headers=headers, verify=False)
     html = etree.HTML(r.text)
+    ps = html.xpath('//div[@id="J_ip_history"]/p')
     result = []
-    lis = html.xpath('//ul[.//text()="绑定过的域名如下："]/li')
-    title2 = ['domain', 'date']
-    for li in lis[2:]:
-        row = li.xpath('a/text()') + li.xpath('span/text()')
-        result.append(dict(zip(title2, row)))
-
+    title1 = ['ip', 'date']
+    for p in ps:
+        row = p.xpath('a/text()') + p.xpath('span/text()')
+        result.append(dict(zip(title1, row)))
     return result
 
 
 if __name__ == '__main__':
-    target = '1.1.1.1'
+    target = '9.9.9.9'
     print(execute(target))

@@ -7,7 +7,7 @@ def info():
     _info = {
         'name': 'threatbook',
         'type': ['ipv4',],
-        'desc': ['ip信誉',]
+        'desc': 'ip信誉',
     }
     return _info
 

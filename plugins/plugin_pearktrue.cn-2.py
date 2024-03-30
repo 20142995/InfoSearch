@@ -8,7 +8,7 @@ def info():
     _info = {
         'name': 'pearktrue.cn-2',
         'type': ['domain'],
-        'desc': ['icp备案']
+        'desc': 'icp备案',
     }
     return _info
 

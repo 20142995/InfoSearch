@@ -11,7 +11,7 @@ def info():
     _info = {
         'name': 'ip.tool.chinaz',
         'type': ['ipv4'],
-        'desc': ['归属地']
+        'desc': '归属地'
     }
     return _info
 

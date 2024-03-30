@@ -8,7 +8,7 @@ def info():
     _info = {
         'name': 'aizhan',
         'type': ['domain'],
-        'desc': ['网站权重']
+        'desc': '网站权重'
     }
     return _info
 

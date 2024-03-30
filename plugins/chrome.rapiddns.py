@@ -6,7 +6,7 @@ def info():
     _info = {
         'name': 'rapiddns',
         'type': ['ipv4',],
-        'desc': ['ip反查域名']
+        'desc': 'ip反查域名'
     }
     return _info
 

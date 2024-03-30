@@ -11,7 +11,7 @@ def info():
     _info = {
         'name': 'fofa-2',
         'type': ['ipv4'],
-        'desc': ['ip反查域名']
+        'desc': 'ip反查域名'
     }
     return _info
 

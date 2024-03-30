@@ -8,7 +8,7 @@ def info():
     _info = {
         'name': 'ip138-1',
         'type': ['domain',],
-        'desc': ['子域名采集']
+        'desc': '子域名采集',
     }
     return _info
 

@@ -8,7 +8,7 @@ def info():
     _info = {
         'name': 'icp.chinaz-1',
         'type': ['domain','icp','company_name'],
-        'desc': ['icp备案']
+        'desc': 'icp备案'
     }
     return _info
 

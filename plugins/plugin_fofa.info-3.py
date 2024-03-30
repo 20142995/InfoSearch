@@ -11,7 +11,7 @@ def info():
     _info = {
         'name': 'fofa-3',
         'type': ['domain'],
-        'desc': ['资产测绘']
+        'desc': '资产测绘'
     }
     return _info
 

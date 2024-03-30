@@ -8,7 +8,7 @@ def info():
     _info = {
         'name': 'whois.chinaz',
         'type': ['domain',],
-        'desc': ['whois']
+        'desc': 'whois',
     }
     return _info
 
