@@ -43,7 +43,7 @@ def execute(target):
     session.post('https://ti.sangfor.com.cn/api/v1/language/set_language', headers=headers, data=data, verify=False)
     headers['X-Csrftoken'] = session.cookies.get('csrftoken')
     data = {
-        'query': 'OC44LjguOA==',
+        'query': base64.b64encode(target.encode('utf8')).decode('utf8'),
         'days': '30',
     }
 
