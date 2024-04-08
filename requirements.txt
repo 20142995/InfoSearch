@@ -3,3 +3,4 @@ xlsxwriter
 DrissionPage
 requests
 python-whois
+urllib3==1.26.5
