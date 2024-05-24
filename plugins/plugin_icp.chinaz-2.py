@@ -52,5 +52,5 @@ def execute(target):
 
 
 if __name__ == '__main__':
-    target = '厦门享联科技有限公司'
+    target = ''
     print(execute(target))
