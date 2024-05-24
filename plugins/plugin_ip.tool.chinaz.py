@@ -49,6 +49,7 @@ def execute(target):
 
     r = requests.post('https://ip.tool.chinaz.com/ajaxsync.aspx',
                       params=params, headers=headers, data=data, verify=False)
+    r.encoding = r.apparent_encoding
     return execjs.eval(r.text)
 
 
