@@ -44,7 +44,7 @@ for plugin in plugins:
     type_choices += plugin.info()['type']
     desc_choices.append(plugin.info()['desc'])
     name_choices.append(plugin.info()['name'])
-    print(f"| {plugin.info()['name']} | {','.join(plugin.info()['type'])} | {plugin.info()['desc']} |")
+    # print(f"| {plugin.info()['name']} | {','.join(plugin.info()['type'])} | {plugin.info()['desc']} |")
 
 
 # 定义命令行参数
