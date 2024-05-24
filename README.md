@@ -13,11 +13,11 @@ usage: InfoSearch.py [-h] [-i 目标] [-t 输入参数类型] [-d 功能名称] 
 options:
   -h, --help            show this help message and exit
   -i TARGET             目标（必须）
-  -t {domain,icp,company_name,ip,ipv4,ipv6,url}
+  -t {icp,ipv6,company_name,host:port,ipv4,url,ip,domain}
                         指定输入类型（必须）
-  -d {域名历史解析,资产测绘,whois,ip信誉,网站权重,icp备案,ip反查域名,归属地,子域名}
+  -d {whois,域名历史解析,资产测绘,ip信誉,HTTP源代码,网站权重,端口检测,ip反查域名,icp备案,HTTP状态,归属地,子域名,ping检测}
                         指定插件功能（可选）
-  -n {dnsgrep,ip.tool.chinaz,threatbook,fofa-3,aa1.cn-1,alexa.cn,shodan,beianx,icp.chinaz-1,webscan,ip138-2,pywhois,fofa-1,aizhan,yougetsignal,baidu,fofa-4,oioweb-1,pearktrue.cn-1,rapiddns,chaziyu,pearktrue.cn-2,dnslytics,dns.aizhan,fofa-2,oioweb-2,ip138-1,whois.chinaz}
+  -n {dnsgrep,webscan,icp.chinaz-1,baidu,ip138-1,ti.sangfor,rapiddns,whois.chinaz,pearktrue.cn-1,fofa-2,tool.chinaz-3,aizhan,ping.chinaz,beianx,tool.chinaz-1,chaziyu,dnslytics,fofa-4,pywhois,tool.chinaz-2,oioweb-1,pearktrue.cn-2,oioweb-2,alexa.cn,threatbook,aa1.cn-1,ip138-2,ip.tool.chinaz,shodan,fofa-3,fofa-1,yougetsignal,dns.aizhan}
                         指定插件名称（可选）
   -o OUTFILE            保存结果eg: “results.xlsx” （可选）
 ```
@@ -41,8 +41,6 @@ python InfoSearch.py -t ipv4 -i 110.75.129.5 -n ip138
 ```
 
 ## 当前支持
-| 插件名称 | 输入类型 | 功能名称 |
-| :--- | :--- | :--- |
 | dnsgrep | ipv4 | ip反查域名 |
 | dnslytics | ipv4 | ip反查域名 |
 | aa1.cn-1 | domain,url | icp备案 |
@@ -67,10 +65,15 @@ python InfoSearch.py -t ipv4 -i 110.75.129.5 -n ip138
 | oioweb-2 | domain | icp备案 |
 | pearktrue.cn-1 | domain | 网站权重 |
 | pearktrue.cn-2 | domain | icp备案 |
+| ping.chinaz | domain,ipv4 | ping检测 |
 | pywhois | domain | whois |
 | rapiddns | ipv4 | ip反查域名 |
 | shodan | ipv4 | 资产测绘 |
 | threatbook | ipv4 | ip信誉 |
+| ti.sangfor | ipv4 | ip信誉 |
+| tool.chinaz-1 | host:port | 端口检测 |
+| tool.chinaz-2 | domain,url | HTTP状态 |
+| tool.chinaz-3 | domain,url | HTTP源代码 |
 | webscan | ipv4 | ip反查域名 |
 | whois.chinaz | domain | whois |
 | yougetsignal | ipv4 | ip反查域名 |
