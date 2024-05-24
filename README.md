@@ -41,6 +41,9 @@ python InfoSearch.py -t ipv4 -i 110.75.129.5 -n ip138
 ```
 
 ## 当前支持
+| 插件名称 | 输入类型 | 功能名称 |
+| :--- | :--- | :--- |
+| dnsgrep | ipv4 | ip反查域名 |
 | dnsgrep | ipv4 | ip反查域名 |
 | dnslytics | ipv4 | ip反查域名 |
 | aa1.cn-1 | domain,url | icp备案 |
