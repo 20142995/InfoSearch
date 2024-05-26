@@ -45,5 +45,5 @@ def execute(target):
 
 
 if __name__ == '__main__':
-    target = 'google.com'
+    target = 'chinaz.com'
     print(execute(target))

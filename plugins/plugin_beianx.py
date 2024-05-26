@@ -1,11 +1,8 @@
-import requests
 import re
-import execjs
-import base64
+import requests
 from lxml import etree
 
 requests.packages.urllib3.disable_warnings()
-jsb64 =  '''U3RyaW5nWydwcm90b3R5cGUnXVsnaGV4WG9yJ10gPSBmdW5jdGlvbihfMHg0ZTA4ZDgpIHsNCiAgICB2YXIgXzB4NWE1ZDNiID0gJyc7DQogICAgZm9yICh2YXIgXzB4ZTg5NTg4ID0gMHgwOyBfMHhlODk1ODggPCB0aGlzWydsZW5ndGgnXSAmJiBfMHhlODk1ODggPCBfMHg0ZTA4ZDhbJ2xlbmd0aCddOyBfMHhlODk1ODggKz0gMHgyKSB7DQogICAgICAgIHZhciBfMHg0MDFhZjEgPSBwYXJzZUludCh0aGlzWydzbGljZSddKF8weGU4OTU4OCwgXzB4ZTg5NTg4ICsgMHgyKSwgMHgxMCk7DQogICAgICAgIHZhciBfMHgxMDVmNTkgPSBwYXJzZUludChfMHg0ZTA4ZDhbJ3NsaWNlJ10oXzB4ZTg5NTg4LCBfMHhlODk1ODggKyAweDIpLCAweDEwKTsNCiAgICAgICAgdmFyIF8weDE4OWUyYyA9IChfMHg0MDFhZjEgXiBfMHgxMDVmNTkpWyd0b1N0cmluZyddKDB4MTApOw0KICAgICAgICBpZiAoXzB4MTg5ZTJjWydsZW5ndGgnXSA9PSAweDEpIHsNCiAgICAgICAgICAgIF8weDE4OWUyYyA9ICdceDMwJyArIF8weDE4OWUyYzsNCiAgICAgICAgfQ0KICAgICAgICBfMHg1YTVkM2IgKz0gXzB4MTg5ZTJjOw0KICAgIH0NCiAgICByZXR1cm4gXzB4NWE1ZDNiOw0KfQ0KOw0KU3RyaW5nWydwcm90b3R5cGUnXVsndW5zYm94J10gPSBmdW5jdGlvbigpIHsNCiAgICB2YXIgXzB4NGIwODJiID0gWzB4ZiwgMHgyMywgMHgxZCwgMHgxOCwgMHgyMSwgMHgxMCwgMHgxLCAweDI2LCAweGEsIDB4OSwgMHgxMywgMHgxZiwgMHgyOCwgMHgxYiwgMHgxNiwgMHgxNywgMHgxOSwgMHhkLCAweDYsIDB4YiwgMHgyNywgMHgxMiwgMHgxNCwgMHg4LCAweGUsIDB4MTUsIDB4MjAsIDB4MWEsIDB4MiwgMHgxZSwgMHg3LCAweDQsIDB4MTEsIDB4NSwgMHgzLCAweDFjLCAweDIyLCAweDI1LCAweGMsIDB4MjRdOw0KICAgIHZhciBfMHg0ZGEwZGMgPSBbXTsNCiAgICB2YXIgXzB4MTI2MDVlID0gJyc7DQogICAgZm9yICh2YXIgXzB4MjBhN2JmID0gMHgwOyBfMHgyMGE3YmYgPCB0aGlzWydceDZjXHg2NVx4NmVceDY3XHg3NFx4NjgnXTsgXzB4MjBhN2JmKyspIHsNCiAgICAgICAgdmFyIF8weDM4NWVlMyA9IHRoaXNbXzB4MjBhN2JmXTsNCiAgICAgICAgZm9yICh2YXIgXzB4MjE3NzIxID0gMHgwOyBfMHgyMTc3MjEgPCBfMHg0YjA4MmJbJ2xlbmd0aCddOyBfMHgyMTc3MjErKykgew0KICAgICAgICAgICAgaWYgKF8weDRiMDgyYltfMHgyMTc3MjFdID09IF8weDIwYTdiZiArIDB4MSkgew0KICAgICAgICAgICAgICAgIF8weDRkYTBkY1tfMHgyMTc3MjFdID0gXzB4Mzg1ZWUzOw0KICAgICAgICAgICAgfQ0KICAgICAgICB9DQogICAgfQ0KICAgIF8weDEyNjA1ZSA9IF8weDRkYTBkY1snXHg2YVx4NmZceDY5XHg2ZSddKCcnKTsNCiAgICByZXR1cm4gXzB4MTI2MDVlOw0KfQ0KOw0KZnVuY3Rpb24gZ2VuX2FyZzIoYXJnMSl7DQogICAgLy8gYXJnMSA9ICJDQ0E1RTk1QUIxQ0U3NzU5QzQ5MEY4QkY0QjI2RkQzQ0E1NUM1MTYwIg0KICAgIHZhciBfMHgyM2EzOTIgPSBhcmcxWyd1bnNib3gnXSgpOw0KICAgIGFyZzIgPSBfMHgyM2EzOTJbJ2hleFhvciddKCczMDAwMTc2MDAwODU2MDA2MDYxNTAxNTMzMDAzNjkwMDI3ODAwMzc1Jyk7DQogICAgcmV0dXJuIGFyZzINCn07'''
 
 def info():
     _info = {
@@ -14,6 +11,26 @@ def info():
         'desc': 'icp备案'
     }
     return _info
+
+def get_acw_sc__v2(arg,key='3000176000856006061501533003690027800375'):
+    indexes = [0xf, 0x23, 0x1d, 0x18, 0x21, 0x10, 0x1, 0x26, 0xa, 0x9, 0x13, 0x1f, 0x28, 0x1b, 0x16, 0x17, 0x19, 0xd, 0x6, 0xb, 0x27, 0x12, 0x14, 0x8, 0xe, 0x15, 0x20, 0x1a, 0x2, 0x1e, 0x7, 0x4, 0x11, 0x5, 0x3, 0x1c, 0x22, 0x25, 0xc, 0x24]
+    result1 = [''] * 40
+    for index in range(len(arg)):
+        character = arg[index]
+        for i in range(len(indexes)):
+            if indexes[i] == index + 1:
+                result1[i] = character
+    arg1 = ''.join(result1)
+    result2 = ''
+    index = 0
+    while index < len(arg1) and index < len(key):
+        hex_num_arg1 = int(arg1[index:index + 2], 16)
+        hex_num_key = int(key[index:index + 2], 16)
+        xor_result = hex(hex_num_arg1 ^ hex_num_key)[2:]
+        xor_result = '0' + xor_result if len(xor_result) == 1 else xor_result
+        result2 += xor_result
+        index += 2
+    return result2
 
 def execute(target):
     headers = {
@@ -38,8 +55,9 @@ def execute(target):
     arg1 = re.findall("var arg1='(.*?)';",r.text)
     if arg1:
         arg1 = arg1[0]
-        arg2 = execjs.compile(base64.b64decode(jsb64).decode('utf8')).call('gen_arg2',arg1)
-        cookies['acw_sc__v2'] = arg2
+        acw_sc__v2 = get_acw_sc__v2(arg1)
+        cookies['acw_sc__v2'] = acw_sc__v2
+        print(f"{acw_sc__v2=}")
         r = requests.get(f'https://www.beianx.cn/search/{target}', headers=headers,cookies=cookies, verify=False)
     html = etree.HTML(r.text)
     result = []
@@ -52,5 +70,5 @@ def execute(target):
     return result
 
 if __name__ == '__main__':
-    target = 'qq.com'
+    target = 'xp.cn'
     print(execute(target))

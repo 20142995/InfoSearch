@@ -52,5 +52,5 @@ def execute(target):
 
 
 if __name__ == '__main__':
-    target = ''
+    target = 'qq.com'
     print(execute(target))
